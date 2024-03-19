@@ -53,16 +53,8 @@ public class CanvasChatRoom : MonoBehaviour
             messageList.Remove(messageList[0]);
         }
         Message newMessage = new Message();
-        newMessage.textMessage = text;
-        newMessage.textNickName = nickName;
-        newMessage.textNickColor = nickColour;
         GameObject newText = Instantiate(messageBubble, chatPanel.transform);
-        newMessage.messageObject = newText;
-        newMessage.messageArray = newText.GetComponentsInChildren<TextMeshProUGUI>();
-        newMessage.messageArray[1].text = newMessage.textMessage;
-        newMessage.messageArray[0].text = newMessage.textNickName;
-        ColorUtility.TryParseHtmlString(newMessage.textNickColor, out Color newCol);
-        newMessage.messageArray[0].color = newCol;
+        newMessage.SetVariables(text, nickName, nickColour, newText, newText.GetComponentsInChildren<TextMeshProUGUI>());
         messageList.Add(newMessage);
     }
 }
@@ -73,9 +65,23 @@ public class Message
     public string textMessage;
     public string textNickName;
     public string textNickColor;
+
     public GameObject messageObject;
     public TMP_Text[] messageArray;
     public MessageType messageType;
+
+    public void SetVariables(string msg, string nick, string color, GameObject msgObject, TMP_Text[] msgArray)
+    {
+        textMessage = msg;
+        textNickName = nick;
+        textNickColor = color;
+        messageObject = msgObject;
+        messageArray = msgArray;
+        ColorUtility.TryParseHtmlString(textNickColor, out Color newCol);
+        messageArray[1].text = textMessage;
+        messageArray[0].text = textNickName;
+        messageArray[0].color = newCol;
+    }
 
     public enum MessageType
     {
