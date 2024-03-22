@@ -11,8 +11,8 @@ using UnityEngine.UI;
 public class CanvasChatRoom : MonoBehaviour
 {
     public int maxMessages = 25;
-    public string nickName;
-    public string nickColour;
+    public static string nickName;
+    public static string nickColour;
 
     public GameObject chatPanel, messageBubble;
     public TMP_InputField chatBox;
