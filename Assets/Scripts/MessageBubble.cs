@@ -11,8 +11,8 @@ using UnityEngine.UI;
 public class CanvasChatRoom : MonoBehaviour
 {
     public int maxMessages = 25;
-    public static string nickName;
-    public static string nickColour;
+    public static string nickName = "Test";
+    public static string nickColour = "#FFFFFF";
 
     public GameObject chatPanel, messageBubble;
     public TMP_InputField chatBox;
@@ -21,12 +21,6 @@ public class CanvasChatRoom : MonoBehaviour
     List<Message> messageList = new List<Message>();
 
     //public TMP_Text[] PackagedMessage;
-
-    void Start()
-    {
-        nickName = LoginScreenHandler.nickName + ": ";
-        nickColour = LoginScreenHandler.nickColour;
-    }
 
     void Update () 
     {
@@ -79,7 +73,7 @@ public class Message
         messageArray = msgArray;
         ColorUtility.TryParseHtmlString(textNickColor, out Color newCol);
         messageArray[1].text = textMessage;
-        messageArray[0].text = textNickName;
+        messageArray[0].text = textNickName + ": ";
         messageArray[0].color = newCol;
     }
 

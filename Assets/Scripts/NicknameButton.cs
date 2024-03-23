@@ -29,11 +29,16 @@ public class NicknameButton : MonoBehaviour
         apply = newWindow.GetComponentInChildren<Button>();
         apply.onClick.AddListener(ApplyNickWindow);
     }
+
     public void ApplyNickWindow()
     {
         TMP_InputField[] inputFieldArray = newWindow.GetComponentsInChildren<TMP_InputField>();
         CanvasChatRoom.nickColour = inputFieldArray[1].text;
         CanvasChatRoom.nickName = inputFieldArray[0].text;
+        TMP_Text openText = open.GetComponentInChildren<TMP_Text>();
+        UnityEngine.ColorUtility.TryParseHtmlString(inputFieldArray[1].text, out Color newCol);
+        openText.color = newCol;
+        openText.text = inputFieldArray[0].text;
         Destroy(newWindow);
     }
 }

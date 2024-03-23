@@ -1186,7 +1186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72b78962010eecf41a314998d5454728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxMessages: 25
+  maxMessages: 50
   chatPanel: {fileID: 1048146025}
   messageBubble: {fileID: 5288633019861923384, guid: c836477e7b70fe64c8942aa6a6b5ca0c, type: 3}
   chatBox: {fileID: 543673632}
@@ -1649,10 +1649,10 @@ RectTransform:
   - {fileID: 1640781917}
   m_Father: {fileID: 633518103}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0048828125, y: 295.3}
-  m_SizeDelta: {x: -574.7, y: -590.6}
+  m_AnchoredPosition: {x: -0.0048828125, y: -19.549988}
+  m_SizeDelta: {x: -574.7, y: 39.109985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &912485966
 MonoBehaviour:
@@ -1886,7 +1886,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -563.00494}
+  m_AnchoredPosition: {x: 0, y: -652.1045}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1048146028
@@ -1964,10 +1964,10 @@ RectTransform:
   - {fileID: 606769477}
   m_Father: {fileID: 633518103}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -317.67, y: -300.61}
-  m_SizeDelta: {x: 69.959, y: 28.483}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -317.67004, y: 14.549011}
+  m_SizeDelta: {x: -1210.041, y: 28.483002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1053767655
 MonoBehaviour:
@@ -2026,7 +2026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2516,7 +2516,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1321757540}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.00000010840963
+  m_Size: 0.19084525
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
