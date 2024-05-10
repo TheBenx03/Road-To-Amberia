@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,8 +20,8 @@ public class NicknameButton : MonoBehaviour
     {
         newWindow = Instantiate(nickWindow, canvasArea.transform);
         TMP_InputField[] inputFieldArray = newWindow.GetComponentsInChildren<TMP_InputField>();
-        inputFieldArray[1].text = CanvasChatRoom.nickColour;
-        inputFieldArray[0].text = CanvasChatRoom.nickName;
+        inputFieldArray[1].text = ChatManager.localPlayerColor;
+        inputFieldArray[0].text = ChatManager.localPlayerName;
         apply = newWindow.GetComponentInChildren<Button>();
         apply.onClick.AddListener(ApplyNickWindow);
     }
@@ -33,8 +29,8 @@ public class NicknameButton : MonoBehaviour
     public void ApplyNickWindow()
     {
         TMP_InputField[] inputFieldArray = newWindow.GetComponentsInChildren<TMP_InputField>();
-        CanvasChatRoom.nickColour = inputFieldArray[1].text;
-        CanvasChatRoom.nickName = inputFieldArray[0].text;
+        ChatManager.localPlayerColor = inputFieldArray[1].text;
+        ChatManager.localPlayerName = inputFieldArray[0].text;
         TMP_Text openText = open.GetComponentInChildren<TMP_Text>();
         UnityEngine.ColorUtility.TryParseHtmlString(inputFieldArray[1].text, out Color newCol);
         openText.color = newCol;
