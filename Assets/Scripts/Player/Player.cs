@@ -5,11 +5,11 @@ using Debug = UnityEngine.Debug;
 
 public class Player : NetworkBehaviour
 {
+    [Header("Player Attributes")]
     [SyncVar] public string playerName;
     [SyncVar] public string playerColor;
-    
-    //TODO: Make player object interactable (open player profile)
 
+    #region Events
     public override void OnStartServer()
     {
         playerName = (string)connectionToClient.authenticationData;
@@ -33,6 +33,7 @@ public class Player : NetworkBehaviour
         base.OnStopClient();
         PlayerList.instance.Remove(connectionToClient.connectionId);
     }
+    #endregion
 
     [Command(requiresAuthority = false)]
     private void CmdRegister(string playerName)

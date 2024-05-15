@@ -38,7 +38,6 @@ namespace Mirror.Examples.Chat
         public override void OnClientDisconnect()
         {
             base.OnClientDisconnect();
-            LoginUI.instance.gameObject.SetActive(true);
             // LoginUI.instance.usernameInput.text = "";
             LoginUI.instance.usernameInput.ActivateInputField();
         }

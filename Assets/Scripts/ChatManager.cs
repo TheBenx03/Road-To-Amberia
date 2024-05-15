@@ -1,14 +1,7 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using Mirror;
-using Org.BouncyCastle.Crypto.Macs;
 using TMPro;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ChatManager : NetworkBehaviour
 {
@@ -64,7 +57,7 @@ public class ChatManager : NetworkBehaviour
         connNames.Clear();
     }
 
-    [ClientRpc]
+    [ClientRpc(channel = 1)]
     public void SendMessageToChat(string nick, string color, string msg)
     {
         if(messageList.Count >= maxMessages)
