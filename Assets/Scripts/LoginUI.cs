@@ -12,6 +12,11 @@ namespace Mirror.Examples.Chat
         [SerializeField] internal Button clientButton;
         [SerializeField] internal Text errorText;
 
+        //TODO: Make actual login
+        //TODO: Remember credentials
+        //TODO: Enter as anonymous
+        //TODO: Player credentials database
+        
         public static LoginUI instance;
 
         string originalNetworkAddress;

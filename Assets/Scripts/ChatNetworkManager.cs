@@ -46,5 +46,9 @@ namespace Mirror.Examples.Chat
         {
             base.OnClientConnect();
         }
+
+        //TODO: Usar Network Match / Match interest manager para crear salas
+        //TODO: Que la informacion de las salas se mantenga por tablas o jsons
+        //TODO: Que las tablas o jsons sean server only
     }
 }
