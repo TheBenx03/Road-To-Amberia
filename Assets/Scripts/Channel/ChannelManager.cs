@@ -1,17 +1,13 @@
+using System;
 using Mirror;
 using UnityEngine;
 
-public class ChannelManager : NetworkBehaviour
+public class ChannelManager : MonoBehaviour
 {
-    public GameObject channelPrefab;
-
-    public void CreateChannel(string name, string description)
-    {
-        GameObject instance = Instantiate(channelPrefab);
-        Channel channel = instance.GetComponent<Channel>();
-        channel.name = name;
-        channel.description = description;
-
-        NetworkServer.Spawn(newChannel);
+    
+    [ServerCallback] 
+    void CreateMatch(GameObject manager){
+        Guid newMatchId = Guid.NewGuid();
+        
     }
 }
