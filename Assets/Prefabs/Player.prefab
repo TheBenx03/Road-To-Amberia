@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 8767016122285730517}
   - component: {fileID: 2933772981767844272}
   - component: {fileID: 142454623129807697}
+  - component: {fileID: -4274008169623226377}
   - component: {fileID: 8169101540205792861}
   - component: {fileID: 2874850039217764653}
   - component: {fileID: 6671668764252800709}
-  - component: {fileID: -4274008169623226377}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -58,6 +58,7 @@ MonoBehaviour:
   syncInterval: 0
   playerName: 
   playerColor: 
+  testObject: {fileID: 182949242105813442, guid: df111b5ae9cbe1c4cad24242ecf32a10, type: 3}
 --- !u!114 &142454623129807697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,6 +76,22 @@ MonoBehaviour:
   serverOnly: 0
   visibility: 2
   hasSpawned: 0
+--- !u!114 &-4274008169623226377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4686181856511356153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d17e718851449a6879986e45c458fb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  MatchID: 
 --- !u!222 &8169101540205792861
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -216,19 +233,3 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &-4274008169623226377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4686181856511356153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d17e718851449a6879986e45c458fb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  MatchID: 

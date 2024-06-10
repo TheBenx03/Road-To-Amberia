@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class NicknameButton : MonoBehaviour
 {
+    //OLD: Object used to change name and colour
     public GameObject nickWindow;
     public Canvas canvasArea;
     Button open;

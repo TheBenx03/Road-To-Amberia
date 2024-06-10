@@ -17,7 +17,7 @@ namespace Mirror.Examples.Chat
         internal static string localPlayerName;
 
         // Server-only cross-reference of connections to player names
-        internal static readonly Dictionary<NetworkConnectionToClient, string> connNames = new Dictionary<NetworkConnectionToClient, string>();
+        internal static readonly Dictionary<NetworkConnectionToClient, string> connNames = new();
 
         public override void OnStartServer()
         {

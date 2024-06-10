@@ -1,3 +1,4 @@
+using System;
 using Mirror;
 using TMPro;
 using UnityEngine;
@@ -9,11 +10,22 @@ public class Player : NetworkBehaviour
     [SyncVar] public string playerName;
     [SyncVar] public string playerColor;
 
+    public ChannelManager channelManager = new();
+
     #region Events
     public override void OnStartServer()
     {
         playerName = (string)connectionToClient.authenticationData;
         CmdRegister(playerName);
+        CreateMatch();
+    }
+
+    private void CreateMatch()
+    {
+        channelManager.CreateMatch("Testing");
+        Guid matchId = ChannelManager.localMatch;
+        channelManager.JoinMatch(connectionToClient, matchId);
+        channelManager.TestObject(matchId);
     }
 
     public override void OnStartLocalPlayer()
