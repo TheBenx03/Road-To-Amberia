@@ -3,6 +3,8 @@ using Mirror;
 using TMPro;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
+using System.Security.Cryptography;
+using System.Text;
 
 public class Player : NetworkBehaviour
 {
@@ -10,22 +12,17 @@ public class Player : NetworkBehaviour
     [SyncVar] public string playerName;
     [SyncVar] public string playerColor;
 
-    public ChannelManager channelManager = new();
+    NetworkMatch networkMatch;
 
-    #region Events
+    void Awake(){
+        networkMatch = GetComponent<NetworkMatch>();
+    }
+
     public override void OnStartServer()
     {
         playerName = (string)connectionToClient.authenticationData;
         CmdRegister(playerName);
-        CreateMatch();
-    }
-
-    private void CreateMatch()
-    {
-        channelManager.CreateMatch("Testing");
-        Guid matchId = ChannelManager.localMatch;
-        channelManager.JoinMatch(connectionToClient, matchId);
-        channelManager.TestObject(matchId);
+        networkMatch.matchId = GetRandomMatchID();
     }
 
     public override void OnStartLocalPlayer()
@@ -45,7 +42,6 @@ public class Player : NetworkBehaviour
         base.OnStopClient();
         PlayerList.instance.Remove(connectionToClient.connectionId);
     }
-    #endregion
 
     [Command(requiresAuthority = false)]
     private void CmdRegister(string playerName)
@@ -62,5 +58,23 @@ public class Player : NetworkBehaviour
         p.text = playerName;
         ColorUtility.TryParseHtmlString(playerColor, out Color newCol);
         p.color = newCol;
+    }
+
+    public static Guid GetRandomMatchID () {
+        string _id = string.Empty;
+        for (int i = 0; i < 5; i++) {
+            int random = UnityEngine.Random.Range (0, 36);
+            if (random < 26) {
+                _id += (char) (random + 65);
+            } else {
+                _id += (random - 26).ToString ();
+            }
+        }
+        Debug.Log ($"Random Match ID: {_id}");
+        MD5CryptoServiceProvider provider = new();
+        byte[] inputBytes = Encoding.Default.GetBytes (_id);
+        byte[] hashBytes = provider.ComputeHash (inputBytes);
+
+        return new Guid (hashBytes);
     }
 }

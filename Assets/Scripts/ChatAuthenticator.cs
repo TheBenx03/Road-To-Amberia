@@ -2,11 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
-    Documentation: https://mirror-networking.gitbook.io/docs/components/network-authenticators
-    API Reference: https://mirror-networking.com/docs/api/Mirror.NetworkAuthenticator.html
-*/
-
 namespace Mirror.Examples.Chat
 {
     [AddComponentMenu("")]
