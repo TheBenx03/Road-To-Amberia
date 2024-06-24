@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using Mirror;
 using TMPro;
 using UnityEngine;
+using System.Security.Cryptography;
+using System.Text;
+using System;
 
 public class ChatManager : NetworkBehaviour
 {
@@ -16,10 +19,17 @@ public class ChatManager : NetworkBehaviour
     internal static readonly Dictionary<NetworkConnectionToClient, string> connNames = new();
 
     public static ChatManager instance;
+    private NetworkMatch networkMatch;
 
     void Awake ()
     {
         instance = this;
+        networkMatch = GetComponent<NetworkMatch>();
+    }
+
+    void Start ()
+    {
+        networkMatch.matchId = GetRandomMatchID();
     }
 
     void Update () 
@@ -57,7 +67,7 @@ public class ChatManager : NetworkBehaviour
         connNames.Clear();
     }
 
-    [ClientRpc(channel = 1)]
+    [ClientRpc]
     public void SendMessageToChat(string nick, string color, string msg)
     {
         if(messageList.Count >= maxMessages)
@@ -77,5 +87,22 @@ public class ChatManager : NetworkBehaviour
             connNames.Add(sender, sender.identity.GetComponent<Player>().playerName);
         if (!string.IsNullOrWhiteSpace(msg))
             SendMessageToChat(nick, color, msg);
+    }
+
+    public static Guid GetRandomMatchID() {
+        string _id = string.Empty;
+        for (int i = 0; i < 5; i++) {
+            int random = UnityEngine.Random.Range (0, 36);
+            if (random < 26) {
+                _id += (char) (random + 65);
+            } else {
+                _id += (random - 26).ToString ();
+            }
+        }
+        Debug.Log ($"Random Match ID: {_id}");
+        MD5CryptoServiceProvider provider = new();
+        byte[] inputBytes = Encoding.Default.GetBytes (_id);
+        byte[] hashBytes = provider.ComputeHash (inputBytes);
+        return new Guid (hashBytes);
     }
 }

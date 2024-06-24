@@ -10,8 +10,9 @@ namespace Mirror.Examples.Chat
         readonly HashSet<NetworkConnection> connectionsPendingDisconnect = new HashSet<NetworkConnection>();
         internal static readonly HashSet<string> playerNames = new HashSet<string>();
 
-        [Header("Client Username")]
+        [Header("Client")]
         public string playerName;
+        public string playerPassword;
 
         #region Messages
 
@@ -20,6 +21,7 @@ namespace Mirror.Examples.Chat
             // use whatever credentials make sense for your game
             // for example, you might want to pass the accessToken if using oauth
             public string authUsername;
+            public string authPassword;
         }
 
         public struct AuthResponseMessage : NetworkMessage
@@ -45,6 +47,7 @@ namespace Mirror.Examples.Chat
         /// </summary>
         public override void OnStartServer()
         {
+            Database.instance.CreateTables();
             // register a handler for the authentication request we expect from client
             NetworkServer.RegisterHandler<AuthRequestMessage>(OnAuthRequestMessage, false);
         }
@@ -75,51 +78,64 @@ namespace Mirror.Examples.Chat
         /// <param name="msg">The message payload</param>
         public void OnAuthRequestMessage(NetworkConnectionToClient conn, AuthRequestMessage msg)
         {
-            Debug.Log($"Authentication Request: {msg.authUsername}");
+            Debug.Log($"Authentication Request: {msg.authUsername} {msg.authPassword}");
 
             if (connectionsPendingDisconnect.Contains(conn)) return;
+            if (Database.instance.LoginAuth(msg.authUsername,msg.authPassword)){
+                Debug.Log($"Authentication Request: Login Succesful");
+                // check the credentials by calling your web server, database table, playfab api, or any method appropriate.
+                if (!playerNames.Contains(msg.authUsername)){
+                    // Add the name to the HashSet
+                    playerNames.Add(msg.authUsername);
+                    // Store username in authenticationData
+                    // This will be read in Player.OnStartServer
+                    // to set the playerName SyncVar.
+                    conn.authenticationData = msg.authUsername;
 
-            // check the credentials by calling your web server, database table, playfab api, or any method appropriate.
-            if (!playerNames.Contains(msg.authUsername))
-            {
-                // Add the name to the HashSet
-                playerNames.Add(msg.authUsername);
-                // Store username in authenticationData
-                // This will be read in Player.OnStartServer
-                // to set the playerName SyncVar.
-                conn.authenticationData = msg.authUsername;
+                    // create and send msg to client so it knows to proceed
+                    AuthResponseMessage authResponseMessage = new AuthResponseMessage
+                    {
+                        code = 100,
+                        message = "Success"
+                    };
 
-                // create and send msg to client so it knows to proceed
-                AuthResponseMessage authResponseMessage = new AuthResponseMessage
-                {
-                    code = 100,
-                    message = "Success"
-                };
+                    conn.Send(authResponseMessage);
+                    
+                    // Accept the successful authentication
+                    ServerAccept(conn);
+                }
+                else{
+                    connectionsPendingDisconnect.Add(conn);
 
-                conn.Send(authResponseMessage);
-                
-                // Accept the successful authentication
-                ServerAccept(conn);
+                    // create and send msg to client so it knows to disconnect
+                    AuthResponseMessage authResponseMessage = new AuthResponseMessage
+                    {
+                        code = 200,
+                        message = "User already in server...try again"
+                    };
+
+                    conn.Send(authResponseMessage);
+
+                    // must set NetworkConnection isAuthenticated = false
+                    conn.isAuthenticated = false;
+
+                    // disconnect the client after 1 second so that response message gets delivered
+                    StartCoroutine(DelayedDisconnect(conn, 1f));
+                }
             }
-            else
-            {
+            else {
                 connectionsPendingDisconnect.Add(conn);
-
-                // create and send msg to client so it knows to disconnect
-                AuthResponseMessage authResponseMessage = new AuthResponseMessage
-                {
+                AuthResponseMessage authResponseMessage = new AuthResponseMessage{
                     code = 200,
-                    message = "Username already in use...try again"
+                    message = "Login Failed"
                 };
 
                 conn.Send(authResponseMessage);
 
-                // must set NetworkConnection isAuthenticated = false
                 conn.isAuthenticated = false;
 
-                // disconnect the client after 1 second so that response message gets delivered
                 StartCoroutine(DelayedDisconnect(conn, 1f));
-            }
+                Debug.Log($"Authentication Request: Login Failed");}
         }
 
         IEnumerator DelayedDisconnect(NetworkConnectionToClient conn, float waitTime)
@@ -147,6 +163,12 @@ namespace Mirror.Examples.Chat
             LoginUI.instance.errorText.gameObject.SetActive(false);
         }
 
+        public void SetPlayerpassword(string password)
+        {
+            playerPassword = password;
+            LoginUI.instance.errorText.text = string.Empty;
+            LoginUI.instance.errorText.gameObject.SetActive(false);
+        }
         /// <summary>
         /// Called on client from StartClient to initialize the Authenticator
         /// <para>Client message handlers should be registered in this method.</para>
@@ -172,7 +194,7 @@ namespace Mirror.Examples.Chat
         /// </summary>
         public override void OnClientAuthenticate()
         {
-            NetworkClient.Send(new AuthRequestMessage { authUsername = playerName });
+            NetworkClient.Send(new AuthRequestMessage { authUsername = playerName, authPassword = playerPassword });
         }
 
         /// <summary>

@@ -10,12 +10,14 @@ namespace Mirror.Examples.Chat
         [SerializeField] internal InputField usernameInput;
         [SerializeField] internal Button hostButton;
         [SerializeField] internal Button clientButton;
+        [SerializeField] internal Button registerButton;
         [SerializeField] internal Text errorText;
 
         //TODO: Make actual login
         //TODO: Remember credentials
         //TODO: Enter as anonymous
         //TODO: Player credentials database
+        //TODO: Login.cs for backend and networking
         
         public static LoginUI instance;
 
@@ -52,6 +54,7 @@ namespace Mirror.Examples.Chat
         {
             hostButton.interactable = !string.IsNullOrWhiteSpace(username);
             clientButton.interactable = !string.IsNullOrWhiteSpace(username);
+            registerButton.interactable = !string.IsNullOrWhiteSpace(username);
         }
     }
 }

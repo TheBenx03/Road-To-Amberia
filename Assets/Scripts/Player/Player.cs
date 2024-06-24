@@ -12,17 +12,34 @@ public class Player : NetworkBehaviour
     [SyncVar] public string playerName;
     [SyncVar] public string playerColor;
 
+    [Header("White Room")]
+    [SyncVar] public bool changeMatch = false;
+    [SyncVar] public string currentMatch = "";
+
     NetworkMatch networkMatch;
+    Guid netIDGuid;
 
     void Awake(){
         networkMatch = GetComponent<NetworkMatch>();
     }
 
+    void Update(){
+        if (changeMatch){
+            networkMatch.matchId = netIDGuid;
+            networkMatch.matchId = ToGuid(currentMatch);
+            changeMatch = false;
+        }
+    }
+
+    #region Mirror Overrides
     public override void OnStartServer()
     {
         playerName = (string)connectionToClient.authenticationData;
         CmdRegister(playerName);
-        networkMatch.matchId = GetRandomMatchID();
+        if (isLocalPlayer) StartCoroutine(nameof(JoinMatch));
+        else {
+            networkMatch.matchId = ToGuid(GetRandomMatchID());
+            currentMatch = networkMatch.matchId.ToString();}
     }
 
     public override void OnStartLocalPlayer()
@@ -42,7 +59,9 @@ public class Player : NetworkBehaviour
         base.OnStopClient();
         PlayerList.instance.Remove(connectionToClient.connectionId);
     }
+    #endregion
 
+    #region Custom Functions
     [Command(requiresAuthority = false)]
     private void CmdRegister(string playerName)
     {
@@ -60,7 +79,7 @@ public class Player : NetworkBehaviour
         p.color = newCol;
     }
 
-    public static Guid GetRandomMatchID () {
+    public static string GetRandomMatchID () {
         string _id = string.Empty;
         for (int i = 0; i < 5; i++) {
             int random = UnityEngine.Random.Range (0, 36);
@@ -70,6 +89,10 @@ public class Player : NetworkBehaviour
                 _id += (random - 26).ToString ();
             }
         }
+        return _id;
+    }
+
+    public static Guid ToGuid(string _id){
         Debug.Log ($"Random Match ID: {_id}");
         MD5CryptoServiceProvider provider = new();
         byte[] inputBytes = Encoding.Default.GetBytes (_id);
@@ -77,4 +100,10 @@ public class Player : NetworkBehaviour
 
         return new Guid (hashBytes);
     }
+
+    public void JoinMatch(){
+        networkMatch.matchId = ChatManager.instance.GetComponent<NetworkMatch>().matchId;;
+    }
+
+    #endregion
 }

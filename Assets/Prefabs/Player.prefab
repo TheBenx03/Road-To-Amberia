@@ -58,7 +58,6 @@ MonoBehaviour:
   syncInterval: 0
   playerName: 
   playerColor: 
-  testObject: {fileID: 182949242105813442, guid: df111b5ae9cbe1c4cad24242ecf32a10, type: 3}
 --- !u!114 &142454623129807697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,7 +73,7 @@ MonoBehaviour:
   sceneId: 0
   _assetId: 1853110078
   serverOnly: 0
-  visibility: 2
+  visibility: 0
   hasSpawned: 0
 --- !u!114 &-4274008169623226377
 MonoBehaviour:
