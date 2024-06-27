@@ -31,14 +31,14 @@ public class Database : MonoBehaviour
         using (var command = connection.CreateCommand())
         {
             string sqlcreation = "";
-            sqlcreation += "CREATE TABLE IF NOT EXISTS login(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,username TEXT UNIQUE NOT NULL,password TEXT NOT NULL)";
+            sqlcreation += "CREATE TABLE IF NOT EXISTS login(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,username TEXT UNIQUE NOT NULL,password TEXT NOT NULL);";
             command.CommandText = sqlcreation;
             command.ExecuteNonQuery();
         }
         using (var command = connection.CreateCommand())
         {
             string sqlcreation = "";
-            sqlcreation += "CREATE TABLE IF NOT EXISTS rooms(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,roomname TEXT NOT NULL,matchid TEXT NOT NULL)";
+            sqlcreation += "CREATE TABLE IF NOT EXISTS rooms(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,roomname TEXT NOT NULL,matchid TEXT NOT NULL);";
             command.CommandText = sqlcreation;
             command.ExecuteNonQuery();
         }
@@ -52,7 +52,7 @@ public class Database : MonoBehaviour
 
         using (var command = connection.CreateCommand()){
             string sqlinsert = "";
-            sqlinsert += $"INSERT INTO login(username, password) VALUES ({username}) ({password})";
+            sqlinsert += $"INSERT INTO login(username, password) VALUES ('{username}','{password}')";
             command.CommandText = sqlinsert;
 
             try {command.ExecuteNonQuery();}
