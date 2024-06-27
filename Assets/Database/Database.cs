@@ -15,6 +15,9 @@ public class Database : MonoBehaviour
 
     private void Awake() => instance = this;
 
+    /// <summary>
+    /// Called on server from ChatAuthenticator to create the necesary tables in the database
+    /// </summary>
     [ServerCallback]
     public void CreateTables(){
         using var connection = new SqliteConnection(DBName);

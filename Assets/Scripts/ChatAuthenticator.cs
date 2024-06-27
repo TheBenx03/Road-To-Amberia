@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-namespace Mirror.Examples.Chat
+namespace Assets.Scripts
 {
     [AddComponentMenu("")]
     public class ChatAuthenticator : NetworkAuthenticator

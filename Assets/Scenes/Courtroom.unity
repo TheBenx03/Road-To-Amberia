@@ -1576,7 +1576,6 @@ GameObject:
   - component: {fileID: 1077467765}
   - component: {fileID: 1077467764}
   - component: {fileID: 1077467763}
-  - component: {fileID: 1077467762}
   m_Layer: 5
   m_Name: NicknameButton
   m_TagString: Untagged
@@ -1604,20 +1603,6 @@ RectTransform:
   m_AnchoredPosition: {x: -290.79156, y: 14.238037}
   m_SizeDelta: {x: -581.5931, y: 28.483}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1077467762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077467760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a66f391573dda3f40ba6e358a93036c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nickWindow: {fileID: 7971281819561716755, guid: 8583e27b387787742a9c00cd71134863, type: 3}
-  canvasArea: {fileID: 433184090}
 --- !u!114 &1077467763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1816,7 +1801,6 @@ GameObject:
   - component: {fileID: 1123761270}
   - component: {fileID: 1123761269}
   - component: {fileID: 1123761268}
-  - component: {fileID: 1123761267}
   m_Layer: 5
   m_Name: NicknameButton
   m_TagString: Untagged
@@ -1844,20 +1828,6 @@ RectTransform:
   m_AnchoredPosition: {x: -290.79156, y: 14.238037}
   m_SizeDelta: {x: -581.5931, y: 28.483}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1123761267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1123761265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a66f391573dda3f40ba6e358a93036c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nickWindow: {fileID: 7971281819561716755, guid: 8583e27b387787742a9c00cd71134863, type: 3}
-  canvasArea: {fileID: 2038277135}
 --- !u!114 &1123761268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3091,8 +3061,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1034252893}
   m_HandleRect: {fileID: 1034252892}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4149,8 +4119,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 593960930}
   m_HandleRect: {fileID: 593960929}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

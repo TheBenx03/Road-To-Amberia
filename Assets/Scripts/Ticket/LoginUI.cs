@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
 
-namespace Mirror.Examples.Chat
+namespace Assets.Scripts
 {
     public class LoginUI : MonoBehaviour
     {
         [Header("UI Elements")]
         [SerializeField] internal InputField networkAddressInput;
         [SerializeField] internal InputField usernameInput;
-        [SerializeField] internal Button hostButton;
         [SerializeField] internal Button clientButton;
         [SerializeField] internal Button registerButton;
         [SerializeField] internal Text errorText;
@@ -20,7 +20,6 @@ namespace Mirror.Examples.Chat
         //TODO: Login.cs for backend and networking
         
         public static LoginUI instance;
-
         string originalNetworkAddress;
 
         void Awake()
@@ -52,7 +51,6 @@ namespace Mirror.Examples.Chat
         // Called by UI element UsernameInput.OnValueChanged
         public void ToggleButtons(string username)
         {
-            hostButton.interactable = !string.IsNullOrWhiteSpace(username);
             clientButton.interactable = !string.IsNullOrWhiteSpace(username);
             registerButton.interactable = !string.IsNullOrWhiteSpace(username);
         }
