@@ -3,24 +3,29 @@ using Mono.Data.Sqlite;
 using Mirror;
 using System.Data;
 
-
+#if UNITY_SERVER
 public class Database : MonoBehaviour
 {
     [Header("Clear Table")]
     public bool clearTable = false;
     public string tableName = "";
 
-    public string DBName = "URI=file:" + Application.dataPath + "/Database/RoadDB.db";
+    public string DBName;
     public static Database instance;
 
-    private void Awake() => instance = this;
+    private void Awake(){
+        instance = this;
+        DBName = "URI=file:" + Application.persistentDataPath + "/RoadDB.db";
+        CreateTables();
+        LoginRegister("admin","admin");
+    }
 
     /// <summary>
     /// Called on server from ChatAuthenticator to create the necesary tables in the database
     /// </summary>
     [ServerCallback]
     public void CreateTables(){
-        using var connection = new SqliteConnection(DBName);
+        SqliteConnection connection = new(DBName);
         connection.Open();
 
         using (var command = connection.CreateCommand())
@@ -78,3 +83,4 @@ public class Database : MonoBehaviour
         return true;
     }
 }
+#endif

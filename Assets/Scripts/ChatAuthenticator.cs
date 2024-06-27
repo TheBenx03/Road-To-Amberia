@@ -48,7 +48,6 @@ namespace Assets.Scripts
         /// </summary>
         public override void OnStartServer()
         {
-            Database.instance.CreateTables();
             // register a handler for the authentication request we expect from client
             NetworkServer.RegisterHandler<AuthRequestMessage>(OnAuthRequestMessage, false);
         }

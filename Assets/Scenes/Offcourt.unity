@@ -1374,6 +1374,7 @@ GameObject:
   - component: {fileID: 1353810439}
   - component: {fileID: 1353810438}
   - component: {fileID: 1353810442}
+  - component: {fileID: 1353810443}
   m_Layer: 5
   m_Name: TicketUI
   m_TagString: Untagged
@@ -1481,6 +1482,21 @@ MonoBehaviour:
   clientButton: {fileID: 590280286}
   registerButton: {fileID: 481761809}
   errorText: {fileID: 1940863842}
+--- !u!114 &1353810443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353810436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb430670521a1a149a7b199282262e62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ticketUsername: 
+  ticketPassword: 
+  boardAdress: 
 --- !u!1 &1473542201
 GameObject:
   m_ObjectHideFlags: 0
