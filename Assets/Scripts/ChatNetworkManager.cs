@@ -40,7 +40,7 @@ namespace Assets.Scripts
         {
             base.OnClientDisconnect();
             // LoginUI.instance.usernameInput.text = "";
-            LoginUI.instance.usernameInput.ActivateInputField();
+            TicketUI.instance.usernameInput.ActivateInputField();
         }
 
         public override void OnClientConnect()

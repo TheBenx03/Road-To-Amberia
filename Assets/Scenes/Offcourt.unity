@@ -260,7 +260,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 513979308}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Mirror.Examples.Chat.ChatAuthenticator, Assembly-CSharp
         m_MethodName: SetPlayername
         m_Mode: 0
@@ -728,10 +728,10 @@ GameObject:
   m_Component:
   - component: {fileID: 513979310}
   - component: {fileID: 513979309}
-  - component: {fileID: 513979308}
+  - component: {fileID: 513979313}
+  - component: {fileID: 513979312}
   - component: {fileID: 513979307}
   - component: {fileID: 513979311}
-  - component: {fileID: 513979312}
   m_Layer: 0
   m_Name: ChatNetworkManager
   m_TagString: Untagged
@@ -768,26 +768,6 @@ MonoBehaviour:
   debugLog: 0
   statisticsGUI: 0
   statisticsLog: 0
---- !u!114 &513979308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 513979306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54979bbed58d26b42b28191ead203207, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnServerAuthenticated:
-    m_PersistentCalls:
-      m_Calls: []
-  OnClientAuthenticated:
-    m_PersistentCalls:
-      m_Calls: []
-  playerName: 
-  playerPassword: 
 --- !u!114 &513979309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -814,7 +794,7 @@ MonoBehaviour:
   maxConnections: 100
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
-  authenticator: {fileID: 513979308}
+  authenticator: {fileID: 513979313}
   playerPrefab: {fileID: 4686181856511356153, guid: b59cc0c13a383aa4bb0abd077cc7f1e6, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 1
@@ -877,6 +857,26 @@ MonoBehaviour:
   clearTable: 0
   tableName: 
   DBName: URI=file:D:/Unity Proyects/Chatroom/Road-To-Amberia/Assets/Database/RoadDB.db
+--- !u!114 &513979313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513979306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54979bbed58d26b42b28191ead203207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnServerAuthenticated:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClientAuthenticated:
+    m_PersistentCalls:
+      m_Calls: []
+  playerName: 
+  playerPassword: 
 --- !u!1 &590280282
 GameObject:
   m_ObjectHideFlags: 0
@@ -1373,32 +1373,14 @@ GameObject:
   - component: {fileID: 1353810440}
   - component: {fileID: 1353810439}
   - component: {fileID: 1353810438}
-  - component: {fileID: 1353810437}
+  - component: {fileID: 1353810442}
   m_Layer: 5
-  m_Name: LoginUI
+  m_Name: TicketUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1353810437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1353810436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15ac83bc454eba041bbd9c0960d53ab3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  networkAddressInput: {fileID: 1966076628}
-  usernameInput: {fileID: 90149417}
-  hostButton: {fileID: 0}
-  clientButton: {fileID: 590280286}
-  registerButton: {fileID: 481761809}
-  errorText: {fileID: 1940863842}
 --- !u!114 &1353810438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1482,6 +1464,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1353810442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353810436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ac83bc454eba041bbd9c0960d53ab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  networkAddressInput: {fileID: 1966076628}
+  usernameInput: {fileID: 90149417}
+  clientButton: {fileID: 590280286}
+  registerButton: {fileID: 481761809}
+  errorText: {fileID: 1940863842}
 --- !u!1 &1473542201
 GameObject:
   m_ObjectHideFlags: 0
@@ -1661,7 +1660,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 513979308}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Mirror.Examples.Chat.ChatAuthenticator, Assembly-CSharp
         m_MethodName: SetPlayerpassword
         m_Mode: 0
@@ -1673,7 +1672,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1353810437}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: ToggleButtons
         m_Mode: 0
@@ -2123,7 +2122,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -340}
+  m_AnchoredPosition: {x: 4.35, y: -257.8}
   m_SizeDelta: {x: 440, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1966076624

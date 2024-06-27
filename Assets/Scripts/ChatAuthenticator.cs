@@ -160,15 +160,15 @@ namespace Assets.Scripts
         public void SetPlayername(string username)
         {
             playerName = username;
-            LoginUI.instance.errorText.text = string.Empty;
-            LoginUI.instance.errorText.gameObject.SetActive(false);
+            TicketUI.instance.errorText.text = string.Empty;
+            TicketUI.instance.errorText.gameObject.SetActive(false);
         }
 
         public void SetPlayerpassword(string password)
         {
             playerPassword = password;
-            LoginUI.instance.errorText.text = string.Empty;
-            LoginUI.instance.errorText.gameObject.SetActive(false);
+            TicketUI.instance.errorText.text = string.Empty;
+            TicketUI.instance.errorText.gameObject.SetActive(false);
         }
         /// <summary>
         /// Called on client from StartClient to initialize the Authenticator
@@ -220,8 +220,8 @@ namespace Assets.Scripts
                 NetworkManager.singleton.StopHost();
 
                 // Do this AFTER StopHost so it doesn't get cleared / hidden by OnClientDisconnect
-                LoginUI.instance.errorText.text = msg.message;
-                LoginUI.instance.errorText.gameObject.SetActive(true);
+                TicketUI.instance.errorText.text = msg.message;
+                TicketUI.instance.errorText.gameObject.SetActive(true);
             }
         }
 

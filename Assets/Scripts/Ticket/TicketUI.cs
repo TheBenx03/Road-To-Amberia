@@ -4,9 +4,9 @@ using Mirror;
 
 namespace Assets.Scripts
 {
-    public class LoginUI : MonoBehaviour
+    public class TicketUI : MonoBehaviour
     {
-        [Header("UI Elements")]
+        [Header("TicketUI Elements")]
         [SerializeField] internal InputField networkAddressInput;
         [SerializeField] internal InputField usernameInput;
         [SerializeField] internal Button clientButton;
@@ -19,7 +19,7 @@ namespace Assets.Scripts
         //TODO: Player credentials database
         //TODO: Login.cs for backend and networking
         
-        public static LoginUI instance;
+        public static TicketUI instance;
         string originalNetworkAddress;
 
         void Awake()
