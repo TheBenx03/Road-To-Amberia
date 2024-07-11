@@ -15,7 +15,9 @@ public class Database : MonoBehaviour
 
     private void Awake(){
         instance = this;
-        DBName = "URI=file:" + Application.persistentDataPath + "/RoadDB.db";
+    }
+    private void Start(){
+        DBName = "URI=file:" + Application.persistentDataPath + "/RoadDB.sqlite";
         CreateTables();
         LoginRegister("admin","admin");
     }
@@ -70,8 +72,8 @@ public class Database : MonoBehaviour
             sqliread += $"SELECT username, password FROM login WHERE username = '{username}' AND password = '{password}'";
             command.CommandText = sqliread;     
 
-            try {IDataReader auth = command.ExecuteReader();
-            if (auth != null) {
+            try {SqliteDataReader auth = command.ExecuteReader();
+            if (!auth.Read()) {
                 Debug.LogWarning("LoginAuth: Not Registered");
                 return false;}
             }

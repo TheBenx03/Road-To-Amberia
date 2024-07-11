@@ -35,11 +35,6 @@ public class Player : NetworkBehaviour
     public override void OnStartServer()
     {
         playerName = (string)connectionToClient.authenticationData;
-        CmdRegister(playerName);
-        if (isLocalPlayer) StartCoroutine(nameof(JoinMatch));
-        else {
-            networkMatch.matchId = ToGuid(GetRandomMatchID());
-            currentMatch = networkMatch.matchId.ToString();}
     }
 
     public override void OnStartLocalPlayer()
@@ -52,6 +47,8 @@ public class Player : NetworkBehaviour
     {
         base.OnStartClient();
         Set();
+        CmdRegister(playerName);
+        StartCoroutine(nameof(JoinMatch));
     }
 
     public override void OnStopClient()
@@ -101,8 +98,9 @@ public class Player : NetworkBehaviour
         return new Guid (hashBytes);
     }
 
+    [Command(requiresAuthority = false)]
     public void JoinMatch(){
-        networkMatch.matchId = ChatManager.instance.GetComponent<NetworkMatch>().matchId;;
+        connectionToClient.identity.GetComponent<NetworkMatch>().matchId = ChatManager.instance.GetComponent<NetworkMatch>().matchId;
     }
 
     #endregion

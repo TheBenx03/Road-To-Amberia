@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 
-public class PlayerList : NetworkBehaviour
+public class PlayerList : MonoBehaviour
 {
     public static PlayerList instance;
 
