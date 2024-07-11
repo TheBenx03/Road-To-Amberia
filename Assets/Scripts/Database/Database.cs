@@ -3,7 +3,7 @@ using Mono.Data.Sqlite;
 using Mirror;
 using System.Data;
 
-#if UNITY_SERVER
+
 public class Database : MonoBehaviour
 {
     [Header("Clear Table")]
@@ -85,4 +85,3 @@ public class Database : MonoBehaviour
         return true;
     }
 }
-#endif
