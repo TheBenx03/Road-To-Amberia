@@ -260,9 +260,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Mirror.Examples.Chat.ChatAuthenticator, Assembly-CSharp
-        m_MethodName: SetPlayername
+      - m_Target: {fileID: 1353810442}
+        m_TargetAssemblyTypeName: Assets.Scripts.TicketUI, Assembly-CSharp
+        m_MethodName: ToggleButtons
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
