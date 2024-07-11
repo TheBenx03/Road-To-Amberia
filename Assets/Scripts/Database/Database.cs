@@ -57,7 +57,7 @@ public class Database : MonoBehaviour
             sqlinsert += $"INSERT INTO login(username, password) VALUES ('{username}','{password}')";
             command.CommandText = sqlinsert;
 
-            try {command.ExecuteNonQuery();}
+            try {command.ExecuteReader();}
             catch (SqliteException){Debug.LogWarning("LoginRegister: SqliteException");}
         }
         connection.Close();

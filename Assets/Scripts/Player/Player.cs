@@ -53,8 +53,8 @@ public class Player : NetworkBehaviour
 
     public override void OnStopClient()
     {
+        CmdRemoveSelf();
         base.OnStopClient();
-        PlayerList.instance.Remove(connectionToClient.connectionId);
     }
     #endregion
 
@@ -66,6 +66,9 @@ public class Player : NetworkBehaviour
         //DEBUG: Log dictionary when entering
         Debug.Log($"Current Player List: {PlayerList.instance.GetString()}");
     }
+
+    [Command(requiresAuthority = false)]
+    private void CmdRemoveSelf() => PlayerList.instance.Remove(connectionToClient.connectionId);
 
     public void Set()
     {

@@ -27,11 +27,6 @@ public class ChatManager : NetworkBehaviour
         networkMatch = GetComponent<NetworkMatch>();
     }
 
-    void Start ()
-    {
-        networkMatch.matchId = GetRandomMatchID();
-    }
-
     void Update () 
     {
         if (chatBox.text != "")
@@ -65,6 +60,7 @@ public class ChatManager : NetworkBehaviour
     public override void OnStartServer()
     {
         connNames.Clear();
+        networkMatch.matchId = GetRandomMatchID();
     }
 
     [ClientRpc]

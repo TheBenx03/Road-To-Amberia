@@ -14,6 +14,7 @@ namespace Assets.Scripts
         [Header("Client")]
         public string playerName;
         public string playerPassword;
+        public bool registerOn = false;
 
         #region Messages
 
@@ -23,6 +24,7 @@ namespace Assets.Scripts
             // for example, you might want to pass the accessToken if using oauth
             public string authUsername;
             public string authPassword;
+            public bool authRegister;
         }
 
         public struct AuthResponseMessage : NetworkMessage
@@ -78,9 +80,13 @@ namespace Assets.Scripts
         /// <param name="msg">The message payload</param>
         public void OnAuthRequestMessage(NetworkConnectionToClient conn, AuthRequestMessage msg)
         {
-            Debug.Log($"Authentication Request: {msg.authUsername} {msg.authPassword}");
+            Debug.Log($"Authentication Request: Username:{msg.authUsername} Password:{msg.authPassword} Register:{msg.authRegister}");
 
             if (connectionsPendingDisconnect.Contains(conn)) return;
+            if (msg.authRegister == true){
+                Debug.Log($"Authentication Request: Register Succesful");
+                Database.instance.LoginRegister(msg.authUsername,msg.authPassword);
+            }
             if (Database.instance.LoginAuth(msg.authUsername,msg.authPassword)){
                 Debug.Log($"Authentication Request: Login Succesful");
                 // check the credentials by calling your web server, database table, playfab api, or any method appropriate.
@@ -169,6 +175,12 @@ namespace Assets.Scripts
             TicketUI.instance.errorText.text = string.Empty;
             TicketUI.instance.errorText.gameObject.SetActive(false);
         }
+
+        public void SetRegister(){
+            if (registerOn == false) registerOn = true;
+            else if (registerOn == true) registerOn = false;
+        }
+    
         /// <summary>
         /// Called on client from StartClient to initialize the Authenticator
         /// <para>Client message handlers should be registered in this method.</para>
@@ -194,7 +206,10 @@ namespace Assets.Scripts
         /// </summary>
         public override void OnClientAuthenticate()
         {
-            NetworkClient.Send(new AuthRequestMessage { authUsername = playerName, authPassword = playerPassword });
+            NetworkClient.Send(new AuthRequestMessage { 
+                authUsername = playerName, 
+                authPassword = playerPassword,
+                authRegister = registerOn});
         }
 
         /// <summary>
